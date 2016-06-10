@@ -1,27 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.nevorinc.myowncms.config;
+package com.nevorinc.myowncms.config.tiles;
 
-import java.util.HashMap;
 import org.apache.tiles.Attribute;
-import java.util.Map;
 import org.apache.tiles.Definition;
 import org.apache.tiles.definition.DefinitionsFactory;
 import org.apache.tiles.request.Request;
 
-/**
- *
- * @author Admin
- */
+import java.util.HashMap;
+import java.util.Map;
+
 public final class TilesDefinitionsConfig implements DefinitionsFactory {
 
     private static final Map<String, Definition> tilesDefinitions = new HashMap<String, Definition>();
     private static final Attribute BASE_TEMPLATE = new Attribute("/WEB-INF/views/layout/defaultLayout.jsp");
 
-    @Override
     public Definition getDefinition(String name, Request rqst) {
         return tilesDefinitions.get(name);
     }

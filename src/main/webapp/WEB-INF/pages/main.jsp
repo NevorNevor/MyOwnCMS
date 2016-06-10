@@ -13,7 +13,7 @@
         </style>
     </head>   
     <body>
-        <tiles:insertAttribute name="admin_panel" />
+        <!--tiles:insertAttribute name="admin_panel" /-->
         <h1>YII ${adminpanel}</h1>
         <spring:message code="main.header"/>
         <a href="registration"><spring:message code="registr.header"/></a>
