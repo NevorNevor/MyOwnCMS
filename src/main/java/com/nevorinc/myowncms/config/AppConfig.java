@@ -23,7 +23,7 @@ import java.util.Locale;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({"com.nevorinc.myowncms"})
+@ComponentScan({"com.nevorinc.myowncms.*"})
 @Import({SecurityConfig.class})
 public class AppConfig extends WebMvcConfigurerAdapter {
 
@@ -75,6 +75,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     /**
      * <code>Resolves views selected for rendering by @Controllers to tiles resources in the Apache TilesConfigurer bean</code>
+     * @return 
      */
     @Bean
     public TilesViewResolver getTilesViewResolver() {
@@ -85,6 +86,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     /**
      * <code>Configures Apache tiles definitions bean used by Apache TilesViewResolver to resolve views selected for rendering by @Controllers</code>
+     * @return 
      */
     @Bean
     public TilesConfigurer getTilesConfigurer() {

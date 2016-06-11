@@ -5,13 +5,9 @@
  */
 package com.nevorinc.myowncms.web.controller;
 
+import com.nevorinc.myowncms.config.db.user.UserService;
 import com.nevorinc.myowncms.db.model.User;
-import com.nevorinc.myowncms.properties.PropertiesReader;
-import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.nevorinc.myowncms.config.db.user.UserDao;
-import com.nevorinc.myowncms.config.db.user.UserService;
+
 import java.util.List;
-import java.util.Locale;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
  *
@@ -106,10 +99,10 @@ public class MainController {
         return model;
     }
     
-    @RequestMapping(value = { "/adminpanelpage**" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/adminpage**" }, method = RequestMethod.GET)
     public ModelAndView adminPanelPage(){
         ModelAndView model = new ModelAndView();
-        model.setViewName("adminpanelpage");
+        model.setViewName("adminpage");
         
         return model;
     }

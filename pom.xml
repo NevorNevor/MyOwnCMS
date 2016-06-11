@@ -68,6 +68,11 @@
             <version>${spring.secutity.version}</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.secutity.version}</version>
+        </dependency>
 
         <!-- Hibernate -->
         <dependency>
