@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <sec:authorize access="hasRole('ROLE_ADMIN')">
     <style>
         *{
@@ -34,7 +35,7 @@
     <div id="admin_panel">
         <form name="adminPanel">
             <p id="admin_panel_text">Admin Parametr Only</p>
-            <a href="adminpanelpage">Панель администратора</a>
+            <a href="admin/main"><spring:message code="admin_main.header"/></a>
         </form>           
     </div>
     <p>AdminPanel</p>

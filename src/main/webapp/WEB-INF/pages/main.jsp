@@ -15,20 +15,7 @@
     </head>   
     <body>
         <tiles:insertAttribute name="admin_panel"/>
-        <spring:message code="main.header"/>
         <a href="registration"><spring:message code="registr.header"/></a>
-        <table>
-            <tbody>
-                <c:forEach items="${users}" var="user">
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.username}</td>
-                        <td>${user.password}</td>
-                        <td>${user.enabled}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
         
     </body>
 </html>

@@ -73,10 +73,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
-    /**
-     * <code>Resolves views selected for rendering by @Controllers to tiles resources in the Apache TilesConfigurer bean</code>
-     * @return 
-     */
     @Bean
     public TilesViewResolver getTilesViewResolver() {
         TilesViewResolver tilesViewResolver = new TilesViewResolver();
@@ -84,19 +80,12 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return tilesViewResolver;
     }
 
-    /**
-     * <code>Configures Apache tiles definitions bean used by Apache TilesViewResolver to resolve views selected for rendering by @Controllers</code>
-     * @return 
-     */
     @Bean
     public TilesConfigurer getTilesConfigurer() {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
         tilesConfigurer.setCheckRefresh(true);
         tilesConfigurer.setDefinitionsFactoryClass(TilesDefinitionsConfig.class);
-
-        // Add apache tiles definitions
         TilesDefinitionsConfig.addDefinitions("main", "/WEB-INF/pages/main.jsp");
-
         return tilesConfigurer;
     }
 
