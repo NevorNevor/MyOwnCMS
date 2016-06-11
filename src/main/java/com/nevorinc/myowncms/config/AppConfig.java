@@ -95,7 +95,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         tilesConfigurer.setDefinitionsFactoryClass(TilesDefinitionsConfig.class);
 
         // Add apache tiles definitions
-        TilesDefinitionsConfig.addDefinitions();
+        TilesDefinitionsConfig.addDefinitions("main", "/WEB-INF/pages/main.jsp");
 
         return tilesConfigurer;
     }
