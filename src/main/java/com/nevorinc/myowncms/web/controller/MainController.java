@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.nevorinc.myowncms.web.controller;
 
 import com.nevorinc.myowncms.config.db.user.UserService;
+import com.nevorinc.myowncms.config.tiles.TilesDefinitionsConfig;
 import com.nevorinc.myowncms.db.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,12 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
-/**
- *
- * @author Admin
- */
 @Controller
 @Transactional
 public class MainController {
@@ -29,12 +19,8 @@ public class MainController {
     private UserService userService;
     
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
-    public ModelAndView mainPage(){
-        ModelAndView model = new ModelAndView();
-        model.setViewName("main");
-        List<User> users = userService.getAllUsers();
-        model.addObject("users", users);
-        return model;
+    public String mainPage(){      
+        return "users_views/user_main";
     }
     
     @RequestMapping(value = { "/registration"}, method = RequestMethod.GET)
@@ -90,19 +76,13 @@ public class MainController {
     }
     
     @RequestMapping(value = { "/403**" }, method = RequestMethod.GET)
-    public ModelAndView errorPage(){
-        ModelAndView model = new ModelAndView();
-        model.setViewName("403");
-        
-        return model;
+    public String errorPage(){        
+        return "403";
     }
     
     @RequestMapping(value = { "/adminpage**" }, method = RequestMethod.GET)
-    public ModelAndView adminPanelPage(){
-        ModelAndView model = new ModelAndView();
-        model.setViewName("adminpage");
-        
-        return model;
+    public String adminPanelPage(){       
+        return "adminpage";
     }
     
 }

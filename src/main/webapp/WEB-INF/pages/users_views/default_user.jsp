@@ -7,15 +7,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Main</title>
+        <link href="styles/stylesheet.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
                 margin: 0px 0px 0px 0px;
             }
         </style>
     </head>   
-    <body>
-        <tiles:insertAttribute name="admin_panel"/>
-        <a href="registration"><spring:message code="registr.header"/></a>
-        
+    <body>       
+            <tiles:insertAttribute name="admin_panel" />
+            <tiles:insertAttribute name="user_panel"/>
+            <tiles:insertAttribute name="body"/>
     </body>
 </html>

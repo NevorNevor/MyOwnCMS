@@ -41,8 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests().antMatchers("/").permitAll()
-                        /*.and()
-                                .authorizeRequests().antMatchers("/admin*").access("haseRole('ROLE_ADMIN')")*/
+                        .and()
+                                .authorizeRequests().antMatchers("/admin*").access("hasRole('ROLE_ADMIN')")
                         .and()
 				.formLogin().loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/",true)
 			.and()

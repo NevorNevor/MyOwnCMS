@@ -11,7 +11,6 @@ import java.util.Map;
 public final class TilesDefinitionsConfig implements DefinitionsFactory {
 
     private static final Map<String, Definition> tilesDefinitions = new HashMap<String, Definition>();
-    private static final Attribute BASE_TEMPLATE = new Attribute("/WEB-INF/pages/main.jsp");
 
     public Definition getDefinition(String name, Request rqst) {
         return tilesDefinitions.get(name);
@@ -23,19 +22,20 @@ public final class TilesDefinitionsConfig implements DefinitionsFactory {
      *
      * <code>Adds default layout definitions</code>
      */
-    private static void addDefaultLayoutDef(String name, String body) {
+    private static void addDefaultLayoutDef(String definitionName, String trmplateName) {
         Map<String, Attribute> attributes = new HashMap<String, Attribute>();
         attributes.put("admin_panel", new Attribute("/WEB-INF/pages/jsp_fragments/admin_panel.jsp"));
-        tilesDefinitions.put(name, new Definition(name, BASE_TEMPLATE, attributes));
+        attributes.put("user_panel", new Attribute("/WEB-INF/pages/jsp_fragments/user_panel.jsp"));
+        tilesDefinitions.put(definitionName, new Definition(definitionName, new Attribute(trmplateName), attributes));
     }
 
     /**
      * <code>Add Apache tiles definitions</code>
-     * @param jspName jsp view name for applying default tiles
-     * @param jspPath path to jsp view
+     * @param definitionName jsp view name for applying default tiles
+     * @param templateName path to jsp
      */
-    public static void addDefinitions(String jspName, String jspPath) {
-        addDefaultLayoutDef(jspName, jspPath);
+    public static void addDefinitions(String definitionName, String templateName) {
+        addDefaultLayoutDef(definitionName,templateName);
     }
 
 }

@@ -66,3 +66,34 @@ table {
     background: azure;    
 }
 
+/********************
+** User_panel styles
+********************/
+
+#user_panel *{
+            font-size: 18px; 
+        }
+
+        #user_panel{
+            /*position: absolute;*/
+            background: background;
+            background: linear-gradient(to top left, #f7b83a, #ebea55);
+            top: 0px;
+            left: 0px;
+            height: 30px;
+            width: 100%; 
+            margin: 0px 0px 0px 0px;
+        }
+
+        #user_panel a {
+            float: right;
+            margin-left: 10px;
+            right: 20px;
+            margin-top: 3px;
+            border: 0px;
+        }
+
+        #user_panel_text{
+            margin-top: 3px;
+            left: 10px;        
+        }

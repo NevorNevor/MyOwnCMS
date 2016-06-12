@@ -85,7 +85,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
         tilesConfigurer.setCheckRefresh(true);
         tilesConfigurer.setDefinitionsFactoryClass(TilesDefinitionsConfig.class);
-        TilesDefinitionsConfig.addDefinitions("main", "/WEB-INF/pages/main.jsp");
+        TilesDefinitionsConfig.addDefinitions("default_user","/WEB-INF/pages/users_views/default_user.jsp");
+        TilesDefinitionsConfig.addDefinitions("default_admin","/WEB-INF/pages/admin_views/default_admin.jsp");
         return tilesConfigurer;
     }
 
