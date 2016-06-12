@@ -26,7 +26,7 @@ public class AdminController {
         return "admin_views/admin_users";
     }
     
-    @RequestMapping("/user_list")
+    @RequestMapping(value={"/user_list"}, produces = "application/json")
     public @ResponseBody List<User> getUsers(){
         return userService.getAllUsers();
     }
