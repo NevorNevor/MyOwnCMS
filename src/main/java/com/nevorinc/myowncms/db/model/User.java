@@ -33,6 +33,12 @@ public class User implements Serializable{
         this.password = password;
         this.enabled = enabled;
     }
+
+    public User(int id, String username, Integer enabled) {
+        this.id = id;
+        this.username = username;
+        this.enabled = enabled;
+    }      
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -110,6 +116,5 @@ public class User implements Serializable{
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", name=" + username + ", password=" + password + ", enabled=" + (enabled == 1) + '}';
-    }
-       
+    }   
 }

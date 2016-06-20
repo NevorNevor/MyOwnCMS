@@ -1,7 +1,8 @@
-package com.nevorinc.myowncms.config;
+package com.nevorinc.myowncms.config.initial;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.nevorinc.myowncms.config.AppConfig;
 import com.nevorinc.myowncms.config.AppConfig;
 import javax.servlet.Filter;
 import javax.servlet.ServletRegistration;

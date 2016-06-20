@@ -18,13 +18,15 @@ public interface UserService {
       
     public List<User> getAllUsers();
     
+    public List<User> getAllUsersWithoutPassword();
+    
     public User getUserByName(String name);
     
     public void deleteUser(String name);
     
-    public void saveUser(User user);
+    public User saveUser(User user);
     
-    public void updateuser(User user);
+    public User updateUser(User user);
     
     public boolean userExists(String name);
 }

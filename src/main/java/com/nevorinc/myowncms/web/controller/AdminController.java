@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/admin*")
 public class AdminController {
     
-    @Autowired
-    private UserService userService;
-    
     @RequestMapping(value = {"/","main"})
     public String adminMain(Model model){
         return "admin_views/admin_main";
@@ -26,8 +23,8 @@ public class AdminController {
         return "admin_views/admin_users";
     }
     
-    @RequestMapping(value={"/user_list"}, produces = "application/json")
+    /*@RequestMapping(value={"/user_list"}, produces = "application/json")
     public @ResponseBody List<User> getUsers(){
         return userService.getAllUsers();
-    }
+    }*/
 }

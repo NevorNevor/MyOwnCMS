@@ -14,7 +14,7 @@
         }
     </script>
     <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <div id="user_panel">
+        <div class="" id="user_panel">
                 User : ${pageContext.request.userPrincipal.name} | <a
                     href="javascript:formSubmit()"> Logout</a>
         </div>

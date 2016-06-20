@@ -1,4 +1,4 @@
-package com.nevorinc.myowncms.config;
+package com.nevorinc.myowncms.config.initial;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
