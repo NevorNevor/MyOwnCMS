@@ -38,7 +38,7 @@ public class User implements Serializable{
         this.id = id;
         this.username = username;
         this.enabled = enabled;
-    }      
+    }
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +55,7 @@ public class User implements Serializable{
     private String password;
     
 
-    @Pattern(regexp = "^(1|0)$")
+    /*@Pattern(regexp = "^(1|0)$")*/
     @Column(name = "ENABLED")
     private Integer enabled;
 
@@ -63,6 +63,10 @@ public class User implements Serializable{
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -79,13 +83,13 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public int getEnabled() {
+    public Integer getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(int enabled) {
+    public void setEnabled(Integer enabled) {
         this.enabled = enabled;
-    }
+    }  
 
     @Override
     public int hashCode() {

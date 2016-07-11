@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserServiceImpl implements UserService{
     
-    final static Logger logger = Logger.getLogger(UserService.class);
+    final static Logger logger = Logger.getLogger(UserServiceImpl.class);
     
     @Autowired
     private UserDao userDao;
@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService{
         User oldUser = userDao.getUserById(user.getId());
         if (oldUser != null){
             user.setPassword(oldUser.getPassword());
-            userDao.saveUser(user);
+            userDao.updateUser(user);
         }
         return user;
     }

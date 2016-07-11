@@ -4,7 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <tiles:insertDefinition name="default_admin">
     <tiles:putAttribute name="body">
-        <div class="container" ng-app="admin.users" ng-controller="users">
+        <!--div class="container" ng-app="admin.users" ng-controller="users">
             <h1><spring:message code="admin_main.users_ref"/></h1>
             <table class="table table-hover" ng-if="!edit">
                 <thead>
@@ -36,7 +36,8 @@
                     <td><button class="btn-default" ng-click="back()">Back</button></td>
                 </tr>
             </table>
-        </div>
+        </div-->
+        <main-comp>Loading...</main-comp>
     </tiles:putAttribute>
 </tiles:insertDefinition>
 <spring:message code="admin_main.header"/>  

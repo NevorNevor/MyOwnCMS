@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao{           
     
     final static Logger logger = Logger.getLogger(UserDaoImpl.class);
+    
     /**
      * Returned list of registered users
      * @return List<User> 
@@ -80,5 +81,15 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao{
     public void saveUser(User user) {
         logger.debug("Try to persist " + user);
         persist(user);
-    }       
+    }
+    
+    /**
+     * Update user in Users table
+     * @param user 
+     */
+    @Override
+    public void updateUser(User user) {
+        logger.debug("Try to update " + user);
+        update(user);
+    }
 }

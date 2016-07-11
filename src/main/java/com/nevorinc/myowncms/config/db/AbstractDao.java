@@ -9,9 +9,11 @@ package com.nevorinc.myowncms.config.db;
  *
  * @author Admin
  */
+import com.nevorinc.myowncms.config.db.user.UserDaoImpl;
 import java.io.Serializable;
  
 import java.lang.reflect.ParameterizedType;
+import org.apache.log4j.Logger;
  
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -22,6 +24,8 @@ import org.springframework.beans.factory.annotation.Configurable;
 
 @Configurable
 public abstract class AbstractDao<PK extends Serializable, T> {
+    
+    final static Logger logger = Logger.getLogger(AbstractDao.class);
      
     private final Class<T> persistentClass;
      
@@ -48,6 +52,12 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     
     public void persist(T entity) {
         getSession().persist(entity);
+        logger.debug("#persist successful " + entity);
+    }
+    
+    public void update(T entity) {
+        getSession().save(entity);
+        logger.debug("#update successful " + entity);
     }
  
     public void delete(T entity) {

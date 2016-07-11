@@ -9,9 +9,18 @@
         <title>JSP Page</title>
         <link href="<c:url value="/styles/bootstrap.css"/>" rel="stylesheet" type="text/css"/>
         <link href="<c:url value="/styles/bootstrap-theme.css"/>" rel="stylesheet" type="text/css"/>
-        <script src="../scripts/angular.js" type="text/javascript"></script>
-        <script src="../scripts/angular-resource.js" type="text/javascript"></script>
-        <script src="../scripts/admin_js/admin_users.js" type="text/javascript"></script>
+
+        <script src="<c:url value="/scripts/node_modules/core-js/client/shim.min.js"/>"></script>
+        <script src="<c:url value="/scripts/node_modules/zone.js/dist/zone.js"/>"></script>
+        <script src="<c:url value="/scripts/node_modules/reflect-metadata/Reflect.js"/>"></script>
+        <script src="<c:url value="/scripts/node_modules/systemjs/dist/system.src.js"/>"></script>
+        <!-- 2. Configure SystemJS -->
+        <script src="<c:url value="/scripts/systemjs.config.js"/>"></script>
+        <script>
+            System.import('admin').catch(function (err) {
+                console.error(err);
+            });
+        </script>
     </head>
     <body>
         <tiles:insertAttribute name="user_panel"/>
