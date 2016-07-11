@@ -1,11 +1,11 @@
 export class User {
     id:number;
-    name:string;
+    username:string;
     enabled:boolean;
 
     constructor(id:number,name:string,enabled:boolean){
         this.id = id;
-        this.name = name;
+        this.username = name;
         this.enabled = enabled;
     }
 }

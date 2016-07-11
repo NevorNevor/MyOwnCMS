@@ -20,7 +20,7 @@ var UserComponent = (function () {
     UserComponent = __decorate([
         core_1.Component({
             selector: '[user]',
-            template: "<td>{{user.id}}</td>\n    <td>{{user.name}}</td>\n    <td>{{user.enabled}}</td>"
+            template: "<td>{{user.id}}</td>\n    <td>{{user.username}}</td>\n    <td>{{user.enabled}}</td>"
         }), 
         __metadata('design:paramtypes', [])
     ], UserComponent);

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var user_ctrl_component_1 = require('./components/user_controller/user_ctrl.component');
+var user_service_1 = require('./service/user_service');
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -17,7 +18,8 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'main-comp',
             templateUrl: '../scripts/admin/app.component.html',
-            directives: [user_ctrl_component_1.User_CtrlComponent]
+            directives: [user_ctrl_component_1.User_CtrlComponent],
+            providers: [user_service_1.User_Service]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

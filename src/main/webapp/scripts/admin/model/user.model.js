@@ -2,7 +2,7 @@
 var User = (function () {
     function User(id, name, enabled) {
         this.id = id;
-        this.name = name;
+        this.username = name;
         this.enabled = enabled;
     }
     return User;

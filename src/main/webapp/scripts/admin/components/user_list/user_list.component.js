@@ -10,18 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var user_component_1 = require('../user_item/user.component');
-var user_model_1 = require('../../model/user.model');
+var user_service_1 = require('../../service/user_service');
 var User_ListComponent = (function () {
-    function User_ListComponent() {
-        this.users = [new user_model_1.User(1, 'Vasya', true), new user_model_1.User(2, 'Sasha', false)];
+    function User_ListComponent(user_service) {
+        this.user_service = user_service;
+        this.users = this.user_service.getUsers();
+        //[new User(1, 'Vasya', true), new User(2, 'Sasha', false)];    
     }
+    User_ListComponent.prototype.load = function () {
+        console.log(this.users);
+    };
     User_ListComponent = __decorate([
         core_1.Component({
             selector: 'user-list',
             templateUrl: '../scripts/admin/components/user_list/user_list.component.html',
             directives: [user_component_1.UserComponent]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [user_service_1.User_Service])
     ], User_ListComponent);
     return User_ListComponent;
 }());

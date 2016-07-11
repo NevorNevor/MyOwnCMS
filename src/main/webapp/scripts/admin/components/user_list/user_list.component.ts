@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserComponent } from '../user_item/user.component';
 import { User } from '../../model/user.model';
+import { User_Service } from '../../service/user_service';
 
 @Component({
   selector: 'user-list',
@@ -10,7 +11,12 @@ import { User } from '../../model/user.model';
 export class User_ListComponent {
   users: User[];
 
-  constructor() {
-    this.users = [new User(1, 'Vasya', true), new User(2, 'Sasha', false)];
+  constructor(private user_service: User_Service) {
+    this.users = this.user_service.getUsers();
+    //[new User(1, 'Vasya', true), new User(2, 'Sasha', false)];    
+  }
+
+  load() {
+    console.log(this.users);
   }
 }
