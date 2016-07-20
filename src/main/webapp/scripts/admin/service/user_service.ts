@@ -32,8 +32,7 @@ export class User_Service {
             console.log("user_service/setUser(", user, ") - " + response.getMessage());
         },(error: Response) =>{
             console.log("user_service/setUser - error: ", error.statusText);
-        }
-        )
+        })
     }
 
 }
