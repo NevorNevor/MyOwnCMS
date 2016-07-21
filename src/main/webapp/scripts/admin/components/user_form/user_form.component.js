@@ -14,6 +14,7 @@ var user_service_1 = require('../../service/user_service');
 var User_FormComponent = (function () {
     function User_FormComponent(formBuilder, user_service) {
         this.user_service = user_service;
+        this.loading = false;
         this.backToListEmitter = new core_1.EventEmitter();
         this.userForm = formBuilder.group({
             'id': [''],
@@ -28,9 +29,13 @@ var User_FormComponent = (function () {
         console.log("admin/UserForm - showUser(", user, ")");
     };
     User_FormComponent.prototype.onSubmit = function (value) {
+        var _this = this;
         value.enabled = value.enabled ? 1 : 0;
-        this.user_service.setUser(value);
-        this.backToList();
+        this.loading = true;
+        this.user_service.setUser(value, function () {
+            _this.backToList();
+            _this.loading = false;
+        });
         console.log("admin/UserForm - onSubmit(", value, ")");
     };
     User_FormComponent.prototype.backToList = function () {

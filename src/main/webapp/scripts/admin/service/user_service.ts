@@ -5,32 +5,31 @@ import { Response_JSON } from '../../components_library/response_json/response_j
 
 @Injectable()
 export class User_Service {
-    loading: boolean = false;
-    headers: Headers = new Headers({'Content-Type': 'application/json'});
-    
+    headers: Headers = new Headers({ 'Content-Type': 'application/json' });
+
     constructor(private http: Http) { }
 
-    getUsers(): User[] {
+    getUsers(onSuccessFunc): User[] {
         let users: User[] = [];
-        this.loading = true;
         this.http.request('../users').subscribe((res: Response) => {
             let data = res.json();
-            this.loading = false;
             for (let user of data) {
                 users.push(user);
             }
+            console.log("user_service/getUsers - success ");
+            onSuccessFunc();
+        }, (error: Response) => {
+            console.log("user_service/getUsers - error: ", error.statusText);
         });
-        console.log("user_service/getUsers - success");
         return users;
     }
 
-    setUser(user: User) {
-        this.loading = true;
+    setUser(user: User, onSuccessFunc) {
         this.http.put('../users', user, this.headers).subscribe((res: Response) => {
             let response = new Response_JSON(res);
-            this.loading = false;
             console.log("user_service/setUser(", user, ") - " + response.getMessage());
-        },(error: Response) =>{
+            onSuccessFunc();
+        }, (error: Response) => {
             console.log("user_service/setUser - error: ", error.statusText);
         })
     }

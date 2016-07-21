@@ -27,6 +27,7 @@ import { User_Service } from '../../service/user_service';
 })
 export class User_FormComponent {
     userForm: FormGroup;
+    loading: boolean = false;
     @Output('backToList') backToListEmitter = new EventEmitter();
 
     constructor(formBuilder: FormBuilder, private user_service: User_Service) {
@@ -46,8 +47,11 @@ export class User_FormComponent {
 
     onSubmit(value) {
         value.enabled = value.enabled ? 1 : 0;
-        this.user_service.setUser(value);
-        this.backToList();
+        this.loading = true;
+        this.user_service.setUser(value, () => {
+            this.backToList();
+            this.loading = false;
+        });
         console.log("admin/UserForm - onSubmit(", value, ")");
     }
 
