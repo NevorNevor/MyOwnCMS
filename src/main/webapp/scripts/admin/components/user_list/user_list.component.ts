@@ -15,7 +15,7 @@ import { User_Service } from '../../service/user_service';
         <tr *ngFor="let user of users" [user]=user (click)="userPick(user)"></tr>
       </tbody>
     </table>
-    <h3 [hidden]="loading" class="text-center">
+    <h3 *ngIf="loading" class="text-center">
       LOADING...
     </h3>
     `,
@@ -29,6 +29,7 @@ export class User_ListComponent {
   constructor(private user_service: User_Service) {
     this.users = this.user_service.getUsers(() => {
       this.loading = false;
+      console.log(this.loading);
     });
   }
 
