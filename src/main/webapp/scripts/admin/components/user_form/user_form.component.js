@@ -15,32 +15,73 @@ var User_FormComponent = (function () {
     function User_FormComponent(formBuilder, user_service) {
         this.user_service = user_service;
         this.loading = false;
+        this.newUser = false;
         this.backToListEmitter = new core_1.EventEmitter();
         this.userForm = formBuilder.group({
             'id': [''],
-            'username': [''],
+            'username': ['', forms_1.Validators.compose([
+                    forms_1.Validators.minLength(4),
+                    forms_1.Validators.maxLength(15),
+                    forms_1.Validators.required
+                ])
+            ],
+            'password': ['', forms_1.Validators.compose([
+                    forms_1.Validators.minLength(6),
+                    forms_1.Validators.maxLength(15),
+                    forms_1.Validators.required
+                ])
+            ],
             'enabled': ['']
         });
     }
     User_FormComponent.prototype.showUser = function (user) {
-        this.userForm.controls['id'].updateValue(user.id);
-        this.userForm.controls['username'].updateValue(user.username);
-        this.userForm.controls['enabled'].updateValue(user.enabled);
-        console.log("admin/UserForm - showUser(", user, ")");
+        if (user !== null) {
+            this.userForm.controls['id'].updateValue(user.id);
+            this.userForm.controls['username'].updateValue(user.username);
+            this.userForm.controls['enabled'].updateValue(user.enabled);
+            console.log("admin/UserForm - showUser(", user, ")");
+        }
+        else {
+            this.newUser = true;
+            this.userForm.controls['username'].updateValue("");
+            this.userForm.controls['password'].updateValue("");
+            this.userForm.controls['enabled'].updateValue(true);
+            console.log("admin/UserForm - showUser - new user");
+        }
     };
     User_FormComponent.prototype.onSubmit = function (value) {
-        var _this = this;
-        value.enabled = value.enabled ? 1 : 0;
-        this.loading = true;
-        this.user_service.setUser(value, function () {
-            _this.backToList();
-            _this.loading = false;
-        });
+        if (!this.newUser)
+            this.setUser(value);
+        else
+            this.addUser(value);
         console.log("admin/UserForm - onSubmit(", value, ")");
     };
     User_FormComponent.prototype.backToList = function () {
         this.backToListEmitter.emit(true);
+        this.newUser = false;
         console.log("admin/UserForm - backToList(", true, ")");
+    };
+    User_FormComponent.prototype.setUser = function (value) {
+        var _this = this;
+        value.enabled = value.enabled ? 1 : 0;
+        delete value.password;
+        this.loading = true;
+        this.user_service.setUser(value, function (result) {
+            if (result)
+                _this.backToList();
+            _this.loading = false;
+        });
+    };
+    User_FormComponent.prototype.addUser = function (value) {
+        var _this = this;
+        value.enabled = value.enabled ? 1 : 0;
+        delete value.id;
+        this.loading = true;
+        this.user_service.addUser(value, function (result) {
+            if (result)
+                _this.backToList();
+            _this.loading = false;
+        });
     };
     __decorate([
         core_1.Output('backToList'), 
@@ -51,7 +92,7 @@ var User_FormComponent = (function () {
             selector: 'user-form',
             templateUrl: '../scripts/admin/components/user_form/user_form.components.html',
             styles: [
-                ".ng-valid[required] { \n                border-left: 5px solid #42A948;\n            }\n            ",
+                ".ng-valid { \n                border-left: 5px solid #42A948;\n            }\n            ",
                 ".ng-invalid {\n                border-left: 5px solid #a94442;\n            }\n            "],
             directives: [forms_1.FORM_DIRECTIVES, forms_1.REACTIVE_FORM_DIRECTIVES]
         }), 

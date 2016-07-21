@@ -9,6 +9,8 @@ import { User_Service } from '../../service/user_service';
     <h3 class="text-center">
       User list
     </h3>
+    <button type="button" class="btn btn-default" (click)="newUser()">New User</button>
+    <button type="button" class="btn btn-default" (click)="refresh()">Refresh</button>
     <table class="table table-condensed table-bordered table-hover">
       <thead><tr><th>ID</th><th>Name</th><th>Enabled</th></tr></thead>
       <tbody>
@@ -27,13 +29,20 @@ export class User_ListComponent {
   @Output('userPick') userPickEmitter = new EventEmitter();
 
   constructor(private user_service: User_Service) {
-    this.users = this.user_service.getUsers(() => {
-      this.loading = false;
-      console.log(this.loading);
-    });
+    this.refresh();
   }
 
   userPick(user: User) {
     this.userPickEmitter.emit(user);
+  }
+
+  newUser(){
+    this.userPickEmitter.emit(null);
+  }
+
+  refresh(){
+    this.users = this.user_service.getUsers(() => {
+      this.loading = false;
+    });
   }
 }

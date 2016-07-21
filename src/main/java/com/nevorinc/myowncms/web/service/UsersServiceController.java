@@ -5,8 +5,8 @@
  */
 package com.nevorinc.myowncms.web.service;
 
-import com.mysql.fabric.xmlrpc.base.ResponseParser;
-import com.nevorinc.myowncms.config.db.user.UserService;
+import com.nevorinc.myowncms.db.dao.exceptions.PasswordException;
+import com.nevorinc.myowncms.db.dao.user.UserService;
 import com.nevorinc.myowncms.db.model.User;
 import com.nevorinc.myowncms.web.service.json.ResponseJSON;
 import java.util.List;
@@ -40,9 +40,25 @@ public class UsersServiceController {
             User updatedUser = userService.updateUser(user);
         } catch (HibernateException he) {
             return new ResponseJSON("DataBase exception - update failed");
-        }catch (ConstraintViolationException cve){
+        } catch (ConstraintViolationException cve) {
             //TO DO Constraints violation handler
             return new ResponseJSON(cve.getMessage());
+        }
+        return new ResponseJSON("successful");
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseJSON addUser(@RequestBody User user) {
+        try {
+            logger.debug("Try to #addUser with user: " + user);
+            User addedUser = userService.saveUser(user);
+        } catch (HibernateException he) {
+            return new ResponseJSON("DataBase exception - update failed");
+        } catch (ConstraintViolationException cve) {
+            //TO DO Constraints violation handler
+            return new ResponseJSON(cve.getMessage());
+        } catch (PasswordException pe) {
+            return new ResponseJSON(pe.getMessage());
         }
         return new ResponseJSON("successful");
     }

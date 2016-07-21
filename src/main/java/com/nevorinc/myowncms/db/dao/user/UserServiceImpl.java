@@ -3,11 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nevorinc.myowncms.config.db.user;
+package com.nevorinc.myowncms.db.dao.user;
 
+import com.nevorinc.myowncms.db.dao.exceptions.PasswordException;
 import com.nevorinc.myowncms.db.model.User;
+import java.util.HashSet;
 import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -77,6 +82,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public User saveUser(User user) {
         String password = user.getPassword();
+        if (password.length() > 15 || password.length() < 6)
+            throw new PasswordException(6, 15);
         String encodedPassword = encoder.encode(password);
         user.setPassword(encodedPassword);
         userDao.saveUser(user);

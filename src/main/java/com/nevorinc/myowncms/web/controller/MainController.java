@@ -1,6 +1,6 @@
 package com.nevorinc.myowncms.web.controller;
 
-import com.nevorinc.myowncms.config.db.user.UserService;
+import com.nevorinc.myowncms.db.dao.user.UserService;
 import com.nevorinc.myowncms.config.tiles.TilesDefinitionsConfig;
 import com.nevorinc.myowncms.db.model.User;
 import org.springframework.beans.factory.annotation.Autowired;

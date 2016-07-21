@@ -28,9 +28,21 @@ export class User_Service {
         this.http.put('../users', user, this.headers).subscribe((res: Response) => {
             let response = new Response_JSON(res);
             console.log("user_service/setUser(", user, ") - " + response.getMessage());
-            onSuccessFunc();
+            onSuccessFunc(true);
         }, (error: Response) => {
             console.log("user_service/setUser - error: ", error.statusText);
+            onSuccessFunc(false);
+        })
+    }
+
+    addUser(user: User, onSuccessFunc){
+        this.http.post('../users', user, this.headers).subscribe((res: Response) => {
+            let response = new Response_JSON(res);
+            console.log("user_service/setUser(", user, ") - " + response.getMessage());
+            onSuccessFunc(true);
+        }, (error: Response) => {
+            console.log("user_service/setUser - error: ", error.statusText);
+            onSuccessFunc(false);
         })
     }
 

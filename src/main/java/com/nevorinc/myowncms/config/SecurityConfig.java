@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         @Autowired
         public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
             auth.jdbcAuthentication().dataSource(dataSource)
-                    //.passwordEncoder(passwordEncoder())
+                    .passwordEncoder(passwordEncoder())
                     .usersByUsernameQuery(userAndPaswQuery)
                     .authoritiesByUsernameQuery(autorityQuery)
                     .rolePrefix("ROLE_");

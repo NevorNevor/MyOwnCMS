@@ -1,4 +1,4 @@
-package com.nevorinc.myowncms.config.db.user;
+package com.nevorinc.myowncms.db.dao.user;
 
 import com.nevorinc.myowncms.db.model.User;
 import java.util.List;

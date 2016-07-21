@@ -9,7 +9,7 @@ package com.nevorinc.myowncms.config.db;
  *
  * @author Admin
  */
-import com.nevorinc.myowncms.config.db.user.UserDaoImpl;
+import com.nevorinc.myowncms.db.dao.user.UserDaoImpl;
 import java.io.Serializable;
  
 import java.lang.reflect.ParameterizedType;

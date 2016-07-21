@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nevorinc.myowncms.config.db.user;
+package com.nevorinc.myowncms.db.dao.user;
 
 import com.nevorinc.myowncms.db.model.User;
 import java.util.List;
