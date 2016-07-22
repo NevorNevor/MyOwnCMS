@@ -7,14 +7,9 @@ package com.nevorinc.myowncms.db.dao.user;
 
 import com.nevorinc.myowncms.db.dao.exceptions.PasswordException;
 import com.nevorinc.myowncms.db.model.User;
-import java.util.HashSet;
 import java.util.List;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,18 +71,26 @@ public class UserServiceImpl implements UserService{
     }
 
     /**
+     * Delete user from users table
+     * @param user id for deleting
+     */
+    @Override
+    public void deleteUser(int id) {
+        userDao.deleteUser(id);
+    }
+
+    /**
      * Save user in Users table
      * @param user 
      */
     @Override
-    public User saveUser(User user) {
+    public void saveUser(User user) {
         String password = user.getPassword();
         if (password.length() > 15 || password.length() < 6)
             throw new PasswordException(6, 15);
         String encodedPassword = encoder.encode(password);
         user.setPassword(encodedPassword);
         userDao.saveUser(user);
-        return user;
     }
 
     /**
@@ -95,14 +98,13 @@ public class UserServiceImpl implements UserService{
      * @param user 
      */
     @Override
-    public User updateUser(User user) {
+    public void updateUser(User user) {
         logger.debug("Try to #updateUser with user: " + user);
         User oldUser = userDao.getUserById(user.getId());
         if (oldUser != null){
             user.setPassword(oldUser.getPassword());
             userDao.updateUser(user);
         }
-        return user;
     }
 
     /**

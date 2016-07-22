@@ -14,9 +14,11 @@ import javax.validation.ConstraintViolationException;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,16 +30,25 @@ public class UsersServiceController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 
+     * @return list of users 
+     */
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getUsers() {
         return userService.getAllUsersWithoutPassword();
     }
 
+    /**
+     * Update User table 
+     * @param user
+     * @return update result
+     */
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseJSON updateUser(@RequestBody User user) {
         try {
             logger.debug("Try to #updateUser with user: " + user);
-            User updatedUser = userService.updateUser(user);
+            userService.updateUser(user);
         } catch (HibernateException he) {
             return new ResponseJSON("DataBase exception - update failed");
         } catch (ConstraintViolationException cve) {
@@ -47,18 +58,42 @@ public class UsersServiceController {
         return new ResponseJSON("successful");
     }
 
+    /**
+     * Add user to user table
+     * @param user
+     * @return add result 
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseJSON addUser(@RequestBody User user) {
         try {
             logger.debug("Try to #addUser with user: " + user);
-            User addedUser = userService.saveUser(user);
+            userService.saveUser(user);
         } catch (HibernateException he) {
-            return new ResponseJSON("DataBase exception - update failed");
+            return new ResponseJSON("DataBase exception - add failed");
         } catch (ConstraintViolationException cve) {
             //TO DO Constraints violation handler
             return new ResponseJSON(cve.getMessage());
         } catch (PasswordException pe) {
             return new ResponseJSON(pe.getMessage());
+        }
+        return new ResponseJSON("successful");
+    }
+    
+    /**
+     * Delete user from Users table by id
+     * @param id
+     * @return delete result
+     */
+    @RequestMapping(value = "{id}" ,method = RequestMethod.DELETE)
+    public ResponseJSON deleteUser(@PathVariable("id") int id) {
+        try {
+            logger.debug("Try to #deleteUser with user id: " + id);
+            userService.deleteUser(id);
+        } catch (HibernateException he) {
+            return new ResponseJSON("DataBase exception - delete failed");
+        } catch (ConstraintViolationException cve) {
+            //TO DO Constraints violation handler
+            return new ResponseJSON(cve.getMessage());
         }
         return new ResponseJSON("successful");
     }

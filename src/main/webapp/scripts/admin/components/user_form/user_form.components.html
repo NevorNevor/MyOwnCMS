@@ -30,7 +30,8 @@
             </div>
 
             <button type="submit" [disabled]="!userForm.controls['username'].valid || (newUser && !userForm.valid)" class="btn btn-default">Submit</button>
-            <button type="button" class="btn btn-default" (click)="backToList()">Back</button>           
+            <button type="button" class="btn btn-default" (click)="backToList()">Back</button>
+            <button type="button" *ngIf="!newUser" class="btn btn-default" (click)="deleteUser(userForm.value)">Delete</button>       
         </form>
         <h3 *ngIf="loading" class="text-center">
             LOADING...

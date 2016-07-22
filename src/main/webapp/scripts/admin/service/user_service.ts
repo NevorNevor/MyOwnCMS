@@ -38,10 +38,21 @@ export class User_Service {
     addUser(user: User, onSuccessFunc){
         this.http.post('../users', user, this.headers).subscribe((res: Response) => {
             let response = new Response_JSON(res);
-            console.log("user_service/setUser(", user, ") - " + response.getMessage());
+            console.log("user_service/addUser(", user, ") - " + response.getMessage());
             onSuccessFunc(true);
         }, (error: Response) => {
-            console.log("user_service/setUser - error: ", error.statusText);
+            console.log("user_service/addUser - error: ", error.statusText);
+            onSuccessFunc(false);
+        })
+    }
+
+    deleteUser(user: User, onSuccessFunc){
+        this.http.delete('../users/' + user.id, this.headers).subscribe((res: Response) => {
+            let response = new Response_JSON(res);
+            console.log("user_service/deleteUser(", user, ") - " + response.getMessage());
+            onSuccessFunc(true);
+        }, (error: Response) => {
+            console.log("user_service/deleteUser - error: ", error.statusText);
             onSuccessFunc(false);
         })
     }

@@ -100,4 +100,15 @@ export class User_FormComponent {
             this.loading = false;
         });
     }
+
+    private deleteUser(value){
+        value.enabled = value.enabled ? 1 : 0;
+        delete value.password;
+        this.loading = true;
+        this.user_service.deleteUser(value, (result) => {
+            if (result)
+                this.backToList();
+            this.loading = false;
+        });
+    }
 }

@@ -72,6 +72,17 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao{
     }
 
     /**
+     * Delete user from users table by id
+     * @param user id for delete
+     */
+    @Override
+    public void deleteUser(int id) {
+        Query q = getQuery("delete from Users where id = :id");
+        q.setInteger("id", id);
+        q.executeUpdate();
+    }
+
+    /**
      * Save user in Users table
      * @param user 
      */

@@ -83,6 +83,17 @@ var User_FormComponent = (function () {
             _this.loading = false;
         });
     };
+    User_FormComponent.prototype.deleteUser = function (value) {
+        var _this = this;
+        value.enabled = value.enabled ? 1 : 0;
+        delete value.password;
+        this.loading = true;
+        this.user_service.deleteUser(value, function (result) {
+            if (result)
+                _this.backToList();
+            _this.loading = false;
+        });
+    };
     __decorate([
         core_1.Output('backToList'), 
         __metadata('design:type', Object)

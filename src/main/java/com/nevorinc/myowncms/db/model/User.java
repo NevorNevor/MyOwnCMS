@@ -37,6 +37,13 @@ public class User implements Serializable{
         this.username = username;
         this.enabled = enabled;
     }
+
+    public User(int id, String username, String password, Integer enabled) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+    }        
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
