@@ -2,29 +2,38 @@ package com.nevorinc.myowncms.db.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-public class UserRoles implements GrantedAuthority {
+@Table(name = "user_roles")
+public class UserRole implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @Column(name = "user_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "id"))
     private int userId;
 
     @Column(name = "role")
     private String authority;
 
+    public UserRole(int userId, String authority) {
+        this.userId = userId;
+        this.authority = authority;
+    }
+
+    public UserRole() {
+    }
+    
     public int getId() {
         return id;
     }

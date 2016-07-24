@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.nevorinc.myowncms.web.service;
 
 import com.nevorinc.myowncms.db.dao.exceptions.PasswordException;
@@ -18,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -31,16 +25,18 @@ public class UsersServiceController {
     private UserService userService;
 
     /**
-     * 
-     * @return list of users 
+     *
+     * @return list of users
      */
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getUsers() {
+        logger.debug("Try to #getUsers");
         return userService.getAllUsersWithoutPassword();
     }
 
     /**
-     * Update User table 
+     * Update User table
+     *
      * @param user
      * @return update result
      */
@@ -54,14 +50,17 @@ public class UsersServiceController {
         } catch (ConstraintViolationException cve) {
             //TO DO Constraints violation handler
             return new ResponseJSON(cve.getMessage());
+        } finally {
+            logger.debug("#updateUser fail: " + user);
         }
         return new ResponseJSON("successful");
     }
 
     /**
      * Add user to user table
+     *
      * @param user
-     * @return add result 
+     * @return add result
      */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseJSON addUser(@RequestBody User user) {
@@ -75,16 +74,19 @@ public class UsersServiceController {
             return new ResponseJSON(cve.getMessage());
         } catch (PasswordException pe) {
             return new ResponseJSON(pe.getMessage());
+        } finally {
+            logger.debug("#addUser fail: " + user);
         }
         return new ResponseJSON("successful");
     }
-    
+
     /**
      * Delete user from Users table by id
+     *
      * @param id
      * @return delete result
      */
-    @RequestMapping(value = "{id}" ,method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public ResponseJSON deleteUser(@PathVariable("id") int id) {
         try {
             logger.debug("Try to #deleteUser with user id: " + id);
@@ -94,6 +96,8 @@ public class UsersServiceController {
         } catch (ConstraintViolationException cve) {
             //TO DO Constraints violation handler
             return new ResponseJSON(cve.getMessage());
+        } finally {
+            logger.debug("#deleteUser fail: " + id);
         }
         return new ResponseJSON("successful");
     }
