@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User_CtrlComponent } from './components/user_controller/user_ctrl.component';
-import { User_Service } from './service/user_service';
+import { User_Service } from './user_service/user_service';
 
 @Component({
   selector: 'main-comp',

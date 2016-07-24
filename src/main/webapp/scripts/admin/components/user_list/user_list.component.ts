@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { UserComponent } from '../user_item/user.component';
 import { User } from '../../model/user.model';
-import { User_Service } from '../../service/user_service';
+import { User_Service } from '../../user_service/user_service';
 
 @Component({
   selector: 'user-list',

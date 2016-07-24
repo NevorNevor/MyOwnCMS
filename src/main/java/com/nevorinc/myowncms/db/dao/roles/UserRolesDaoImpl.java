@@ -23,8 +23,8 @@ public class UserRolesDaoImpl extends AbstractDao<Integer, UserRole> implements 
     public UserRole getRoleByUserIdAndAuthority(int id, String authority) {
         logger.debug(String.format("Try to #getRoleByUserIdAndAuthority with id=%d and authority=%s",id,authority));
         Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("user_id", id));
-        criteria.add(Restrictions.eq("role", authority));
+        criteria.add(Restrictions.eq("userId", id));
+        criteria.add(Restrictions.eq("authority", authority));
         return (UserRole) criteria.uniqueResult();
     }
 
@@ -36,7 +36,7 @@ public class UserRolesDaoImpl extends AbstractDao<Integer, UserRole> implements 
     public List<UserRole> getRolesByUserId(int id) {
         logger.debug(String.format("Try to #getRolesByUserIdwith id=%d", id));
         Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("user_id", id));
+        criteria.add(Restrictions.eq("userId", id));
         return criteria.list();
     }
 

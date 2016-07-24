@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -20,6 +19,7 @@ public class UserRole implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "user_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "id"))
     private int userId;
 

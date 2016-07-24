@@ -79,8 +79,9 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(String name) {
         User user = userDao.getUserByName(name);
-        userDao.deleteUser(name);
         userRolesService.deleteUserRolesById(user.getId());
+        userDao.deleteUser(name);
+        
     }
 
     /**
@@ -90,8 +91,8 @@ public class UserServiceImpl implements UserService{
      */
     @Override
     public void deleteUser(int id) {
-        userDao.deleteUser(id);
         userRolesService.deleteUserRolesById(id);
+        userDao.deleteUser(id);      
     }
 
     /**

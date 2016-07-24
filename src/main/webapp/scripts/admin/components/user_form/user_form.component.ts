@@ -9,7 +9,7 @@ import {
     AbstractControl
 } from '@angular/forms';
 import { Control } from '@angular/common';
-import { User_Service } from '../../service/user_service';
+import { User_Service } from '../../user_service/user_service';
 
 @Component({
     selector: 'user-form',
