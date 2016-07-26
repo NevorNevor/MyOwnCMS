@@ -59,10 +59,11 @@ public class User implements Serializable{
     @Column(name = "PASSWORD")
     private String password;
     
-
-    /*@Pattern(regexp = "^(1|0)$")*/
     @Column(name = "ENABLED")
     private Integer enabled;
+    
+    @Column(name = "email")
+    private String email;
 
     public int getId() {
         return id;
@@ -95,6 +96,14 @@ public class User implements Serializable{
     public void setEnabled(Integer enabled) {
         this.enabled = enabled;
     }  
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }        
 
     @Override
     public int hashCode() {
