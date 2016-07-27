@@ -277,6 +277,12 @@
             <version>${slf4jVersion}</version>
         </dependency>
         
+        <!--Reflection-->
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.12.1.GA</version>
+        </dependency>
     </dependencies>
 
     <build>
